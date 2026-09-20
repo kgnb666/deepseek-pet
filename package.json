@@ -2,14 +2,15 @@
   "name": "deepseek-pet",
   "version": "2.7.0",
   "description": "DeepSeek Pet - 你的 DeepSeek API 桌面小管家",
+  "author": "kgnb666",
   "main": "main.js",
   "scripts": {
     "start": "electron .",
     "lint": "eslint .",
     "format": "prettier --write .",
     "test": "node --test",
-    "build": "electron-builder --win portable nsis",
-    "build:portable": "electron-builder --win portable"
+    "build": "electron-builder --win portable nsis --publish never",
+    "build:portable": "electron-builder --win portable --publish never"
   },
   "build": {
     "appId": "com.deepseekpet.app",
