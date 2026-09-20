@@ -8,6 +8,16 @@ const fs = require('fs');
 const MAX_SESSIONS = 200;
 const MAX_MESSAGES = 500;
 
+// 单调递增时间戳：Date.now() 在部分平台（如 Linux 容器 / CI）分辨率较粗，
+// 同一毫秒内连续创建的会话会拿到相同时间戳，"按更新时间倒序"的结果就不稳定。
+// 这里保证每次取到的时间戳严格大于上一次，排序结果与平台无关。
+let lastTs = 0;
+function now() {
+  const t = Date.now();
+  lastTs = t > lastTs ? t : lastTs + 1;
+  return lastTs;
+}
+
 function storePath(userData) {
   return path.join(userData, 'chats.json');
 }
@@ -38,7 +48,12 @@ class ChatStore {
     // 置顶优先，其余按更新时间倒序
     const sorted = [...this.data.sessions].sort((a, b) => {
       if (!!b.pinned !== !!a.pinned) return b.pinned ? 1 : -1;
-      return (b.updatedAt || 0) - (a.updatedAt || 0);
+      const byUpdated = (b.updatedAt || 0) - (a.updatedAt || 0);
+      if (byUpdated !== 0) return byUpdated;
+      // 时间戳相同时补确定性次序，避免排序依赖数组原始顺序
+      const byCreated = (b.createdAt || 0) - (a.createdAt || 0);
+      if (byCreated !== 0) return byCreated;
+      return String(a.id).localeCompare(String(b.id));
     });
     return sorted.map(({ messages, ...meta }) => ({ ...meta, messageCount: messages.length }));
   }
@@ -56,8 +71,8 @@ class ChatStore {
       systemPrompt: String(systemPrompt || ''),
       pinned: false,
       messages: [],
-      createdAt: Date.now(),
-      updatedAt: Date.now(),
+      createdAt: now(),
+      updatedAt: now(),
     };
     this.data.sessions.unshift(s);
     if (this.data.sessions.length > MAX_SESSIONS) {
@@ -80,7 +95,7 @@ class ChatStore {
     if (patch.model !== undefined) s.model = patch.model;
     if (patch.systemPrompt !== undefined) s.systemPrompt = String(patch.systemPrompt || '');
     if (patch.pinned !== undefined) s.pinned = Boolean(patch.pinned);
-    s.updatedAt = Date.now();
+    s.updatedAt = now();
     this.persist();
     return s;
   }
@@ -91,11 +106,11 @@ class ChatStore {
     const m = {
       role: msg.role === 'assistant' ? 'assistant' : 'user',
       content: String(msg.content || '').slice(0, 100_000),
-      ts: msg.ts || Date.now(),
+      ts: msg.ts || now(),
     };
     s.messages.push(m);
     if (s.messages.length > MAX_MESSAGES) s.messages.splice(0, s.messages.length - MAX_MESSAGES);
-    s.updatedAt = Date.now();
+    s.updatedAt = now();
     // 首条用户消息自动作为会话标题
     if (s.title === '新会话' && m.role === 'user') {
       s.title = m.content.replace(/\s+/g, ' ').slice(0, 24) || s.title;
@@ -131,7 +146,7 @@ class ChatStore {
     const s = this.get(id);
     if (!s) return null;
     s.messages = [];
-    s.updatedAt = Date.now();
+    s.updatedAt = now();
     this.persist();
     return s;
   }
