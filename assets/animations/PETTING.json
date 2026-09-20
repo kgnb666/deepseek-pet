@@ -1,0 +1,53 @@
+{
+  "fps": 24,
+  "repeat": 2,
+  "displayHeight": 320,
+  "segments": {
+    "entry": [
+      "PETTING/entry/frame_0001.webp",
+      "PETTING/entry/frame_0002.webp",
+      "PETTING/entry/frame_0003.webp",
+      "PETTING/entry/frame_0004.webp",
+      "PETTING/entry/frame_0005.webp",
+      "PETTING/entry/frame_0006.webp",
+      "PETTING/entry/frame_0007.webp",
+      "PETTING/entry/frame_0008.webp"
+    ],
+    "loop": [
+      "PETTING/loop/frame_0001.webp",
+      "PETTING/loop/frame_0002.webp",
+      "PETTING/loop/frame_0003.webp",
+      "PETTING/loop/frame_0004.webp",
+      "PETTING/loop/frame_0005.webp",
+      "PETTING/loop/frame_0006.webp",
+      "PETTING/loop/frame_0007.webp",
+      "PETTING/loop/frame_0008.webp",
+      "PETTING/loop/frame_0009.webp",
+      "PETTING/loop/frame_0010.webp",
+      "PETTING/loop/frame_0011.webp",
+      "PETTING/loop/frame_0012.webp",
+      "PETTING/loop/frame_0013.webp",
+      "PETTING/loop/frame_0014.webp",
+      "PETTING/loop/frame_0015.webp",
+      "PETTING/loop/frame_0016.webp",
+      "PETTING/loop/frame_0017.webp",
+      "PETTING/loop/frame_0018.webp",
+      "PETTING/loop/frame_0019.webp",
+      "PETTING/loop/frame_0020.webp",
+      "PETTING/loop/frame_0021.webp",
+      "PETTING/loop/frame_0022.webp",
+      "PETTING/loop/frame_0023.webp",
+      "PETTING/loop/frame_0024.webp"
+    ],
+    "out": [
+      "PETTING/out/frame_0001.webp",
+      "PETTING/out/frame_0002.webp",
+      "PETTING/out/frame_0003.webp",
+      "PETTING/out/frame_0004.webp",
+      "PETTING/out/frame_0005.webp",
+      "PETTING/out/frame_0006.webp",
+      "PETTING/out/frame_0007.webp",
+      "PETTING/out/frame_0008.webp"
+    ]
+  }
+}

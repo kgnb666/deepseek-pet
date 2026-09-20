@@ -1,0 +1,53 @@
+{
+  "fps": 24,
+  "repeat": 2,
+  "displayHeight": 320,
+  "segments": {
+    "entry": [
+      "STRETCH/entry/frame_0001.webp",
+      "STRETCH/entry/frame_0002.webp",
+      "STRETCH/entry/frame_0003.webp",
+      "STRETCH/entry/frame_0004.webp",
+      "STRETCH/entry/frame_0005.webp",
+      "STRETCH/entry/frame_0006.webp",
+      "STRETCH/entry/frame_0007.webp",
+      "STRETCH/entry/frame_0008.webp"
+    ],
+    "loop": [
+      "STRETCH/loop/frame_0001.webp",
+      "STRETCH/loop/frame_0002.webp",
+      "STRETCH/loop/frame_0003.webp",
+      "STRETCH/loop/frame_0004.webp",
+      "STRETCH/loop/frame_0005.webp",
+      "STRETCH/loop/frame_0006.webp",
+      "STRETCH/loop/frame_0007.webp",
+      "STRETCH/loop/frame_0008.webp",
+      "STRETCH/loop/frame_0009.webp",
+      "STRETCH/loop/frame_0010.webp",
+      "STRETCH/loop/frame_0011.webp",
+      "STRETCH/loop/frame_0012.webp",
+      "STRETCH/loop/frame_0013.webp",
+      "STRETCH/loop/frame_0014.webp",
+      "STRETCH/loop/frame_0015.webp",
+      "STRETCH/loop/frame_0016.webp",
+      "STRETCH/loop/frame_0017.webp",
+      "STRETCH/loop/frame_0018.webp",
+      "STRETCH/loop/frame_0019.webp",
+      "STRETCH/loop/frame_0020.webp",
+      "STRETCH/loop/frame_0021.webp",
+      "STRETCH/loop/frame_0022.webp",
+      "STRETCH/loop/frame_0023.webp",
+      "STRETCH/loop/frame_0024.webp"
+    ],
+    "out": [
+      "STRETCH/out/frame_0001.webp",
+      "STRETCH/out/frame_0002.webp",
+      "STRETCH/out/frame_0003.webp",
+      "STRETCH/out/frame_0004.webp",
+      "STRETCH/out/frame_0005.webp",
+      "STRETCH/out/frame_0006.webp",
+      "STRETCH/out/frame_0007.webp",
+      "STRETCH/out/frame_0008.webp"
+    ]
+  }
+}

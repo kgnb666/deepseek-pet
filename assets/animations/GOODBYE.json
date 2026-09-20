@@ -1,0 +1,53 @@
+{
+  "fps": 24,
+  "repeat": 1,
+  "displayHeight": 320,
+  "segments": {
+    "entry": [
+      "GOODBYE/entry/frame_0001.webp",
+      "GOODBYE/entry/frame_0002.webp",
+      "GOODBYE/entry/frame_0003.webp",
+      "GOODBYE/entry/frame_0004.webp",
+      "GOODBYE/entry/frame_0005.webp",
+      "GOODBYE/entry/frame_0006.webp",
+      "GOODBYE/entry/frame_0007.webp",
+      "GOODBYE/entry/frame_0008.webp"
+    ],
+    "loop": [
+      "GOODBYE/loop/frame_0001.webp",
+      "GOODBYE/loop/frame_0002.webp",
+      "GOODBYE/loop/frame_0003.webp",
+      "GOODBYE/loop/frame_0004.webp",
+      "GOODBYE/loop/frame_0005.webp",
+      "GOODBYE/loop/frame_0006.webp",
+      "GOODBYE/loop/frame_0007.webp",
+      "GOODBYE/loop/frame_0008.webp",
+      "GOODBYE/loop/frame_0009.webp",
+      "GOODBYE/loop/frame_0010.webp",
+      "GOODBYE/loop/frame_0011.webp",
+      "GOODBYE/loop/frame_0012.webp",
+      "GOODBYE/loop/frame_0013.webp",
+      "GOODBYE/loop/frame_0014.webp",
+      "GOODBYE/loop/frame_0015.webp",
+      "GOODBYE/loop/frame_0016.webp",
+      "GOODBYE/loop/frame_0017.webp",
+      "GOODBYE/loop/frame_0018.webp",
+      "GOODBYE/loop/frame_0019.webp",
+      "GOODBYE/loop/frame_0020.webp",
+      "GOODBYE/loop/frame_0021.webp",
+      "GOODBYE/loop/frame_0022.webp",
+      "GOODBYE/loop/frame_0023.webp",
+      "GOODBYE/loop/frame_0024.webp"
+    ],
+    "out": [
+      "GOODBYE/out/frame_0001.webp",
+      "GOODBYE/out/frame_0002.webp",
+      "GOODBYE/out/frame_0003.webp",
+      "GOODBYE/out/frame_0004.webp",
+      "GOODBYE/out/frame_0005.webp",
+      "GOODBYE/out/frame_0006.webp",
+      "GOODBYE/out/frame_0007.webp",
+      "GOODBYE/out/frame_0008.webp"
+    ]
+  }
+}

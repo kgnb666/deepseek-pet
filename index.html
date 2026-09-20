@@ -1,0 +1,239 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; img-src 'self' data: res:; style-src 'self' 'unsafe-inline'; media-src 'self' res:"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div id="stage">
+      <!-- 迷你悬浮条 -->
+      <div id="mini-bar" class="hidden">
+        <img id="mini-avatar" src="assets/avatar.png" draggable="false" />
+        <div class="mini-info">
+          <div class="mini-balance" id="mini-balance">¥ --</div>
+          <div class="mini-badge" id="mini-badge">低价时段</div>
+        </div>
+        <button id="mini-expand" title="展开">⤢</button>
+      </div>
+
+      <!-- 左侧：气泡 + 宠物 -->
+      <div id="pet-zone">
+        <div id="bubble" class="bubble hidden">
+          <div id="bubble-text"></div>
+          <div class="bubble-tail"></div>
+        </div>
+        <div id="pet-wrap">
+          <img id="pet" src="assets/char_main.png" alt="pet" draggable="false" />
+          <div id="pet-sheet" class="hidden" aria-hidden="true"></div>
+          <video id="pet-video" class="hidden" autoplay loop muted playsinline></video>
+          <div id="mouth" aria-hidden="true"></div>
+        </div>
+        <!-- 快速对话（对标 dsh-pet 快速对话气泡） -->
+        <div id="quick-chat" class="hidden">
+          <input type="text" id="quick-chat-input" placeholder="问点什么…（Enter 发送 / Esc 关闭）" maxlength="500" />
+          <button id="quick-chat-send" title="发送">➤</button>
+        </div>
+        <div id="task-hud" class="task-hud hidden" aria-live="polite">
+          <div id="task-hud-title" class="task-hud-title"></div>
+          <div id="task-hud-detail" class="task-hud-detail hidden"></div>
+          <div id="task-hud-progress" class="task-hud-progress hidden">
+            <div class="task-hud-track"><div id="task-hud-bar" class="task-hud-bar"></div></div>
+            <div id="task-hud-pct" class="task-hud-pct"></div>
+          </div>
+          <div id="task-hud-time" class="task-hud-time hidden"></div>
+          <div class="task-hud-tail"></div>
+        </div>
+        <div id="pet-shadow"></div>
+      </div>
+
+      <!-- 右侧：气泡面板（对标台词气泡的大气泡造型） -->
+      <div id="panel">
+        <div class="panel-tail" aria-hidden="true"></div>
+        <div class="panel-head">
+          <span class="logo">🐳</span>
+          <span class="balance" id="balance">¥ --</span>
+          <div class="header-btns">
+            <button id="btn-refresh" title="刷新余额">⟳</button>
+            <button id="btn-min" title="隐藏桌宠">−</button>
+            <button id="btn-close-panel" title="收起面板">✕</button>
+          </div>
+        </div>
+        <div class="panel-meta">
+          <span class="demo-badge hidden" id="demo-badge">演示</span>
+          <div class="period-badge" id="period-badge">
+            <span id="period-dot">●</span> <span id="period-name">低价</span>
+            <span class="period-sub" id="period-remain">剩余 --:--:--</span>
+          </div>
+        </div>
+        <div class="sub" id="balance-detail">充值余额 ¥-- ｜ 赠金余额 ¥--</div>
+
+        <div class="panel-body">
+          <!-- 总览 -->
+          <div class="tab-page" id="page-overview">
+            <div class="row cols2">
+              <div class="card">
+                <div class="card-title">
+                  <span id="model-name">V4 Flash</span> <a href="#" id="switch-model">切换</a>
+                </div>
+                <div class="kv"><span>缓存命中</span><b id="price-hit">¥0.05 / M</b></div>
+                <div class="kv"><span>缓存未命中</span><b id="price-miss">¥1.50 / M</b></div>
+                <div class="kv"><span>输出</span><b id="price-out">¥4.50 / M</b></div>
+              </div>
+              <div class="card">
+                <div class="card-title">下一个时段</div>
+                <div class="next-period" id="next-period-name">高价时段</div>
+                <div class="sub" id="next-period-range">--:-- - --:--</div>
+                <div class="countdown" id="next-period-count">--:--:--</div>
+              </div>
+            </div>
+
+            <div class="row cols2 consume">
+              <div>
+                <div class="label">今日/本月消费</div>
+                <div class="consume-val small">以控制台为准</div>
+              </div>
+              <div>
+                <div class="label">用量明细</div>
+                <a href="#" id="open-console" class="console-link">打开控制台 ↗</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- 统计 -->
+          <div class="tab-page hidden" id="page-stats">
+            <div class="card">
+              <div class="card-title">本地统计</div>
+              <div class="kv"><span>累计查询次数</span><b id="stat-count">0</b></div>
+              <div class="kv"><span>好感度</span><b id="stat-affection">0</b></div>
+              <div class="kv"><span>上次刷新时间</span><b id="stat-last">--</b></div>
+              <div class="kv"><span>余额不足阈值</span><b id="stat-threshold">¥20</b></div>
+              <div class="kv"><span>上次查询余额</span><b id="stat-prev-balance">--</b></div>
+              <div class="kv"><span>余额变动（推算）</span><b id="stat-change">--</b></div>
+              <div class="kv"><span>陪伴记录</span><b id="stat-feeding">🐟 0 次 ｜ 🎁 彩蛋 0 次 ｜ 🎵 陪唱 0 次</b></div>
+            </div>
+            <div class="hint">
+              「余额变动」由本插件相邻两次查询的余额差值推算，仅供参考；真实消费明细以 DeepSeek 控制台为准。
+            </div>
+          </div>
+
+          <!-- 图表 -->
+          <div class="tab-page hidden" id="page-chart">
+            <div class="card">
+              <div class="card-title">余额变化（本地记录）</div>
+              <canvas id="chart" width="400" height="180"></canvas>
+            </div>
+            <div class="hint">每次刷新余额时记录一个数据点，仅保存在本机。</div>
+          </div>
+
+          <!-- 设置 -->
+          <div class="tab-page hidden" id="page-settings">
+            <div class="card">
+              <div class="card-title">DeepSeek API Key</div>
+              <input type="password" id="set-apikey" placeholder="sk-..." />
+              <div class="hint" id="set-key-hint" style="padding: 4px 0 0"></div>
+              <div class="card-title" style="margin-top: 10px">刷新间隔（分钟）</div>
+              <input type="number" id="set-interval" min="1" max="60" />
+              <div class="card-title" style="margin-top: 10px">余额不足提醒阈值（¥）</div>
+              <input type="number" id="set-threshold" min="1" />
+              <div class="card-title" style="margin-top: 10px">余额变动提醒阈值（¥）</div>
+              <input type="number" id="set-change-threshold" min="0.1" step="0.1" />
+              <div class="switch-row">
+                <span>低价时段更勤快（高价时段 ×3 降频）</span><input type="checkbox" id="set-boost" />
+              </div>
+              <div class="switch-row"><span>置顶显示</span><input type="checkbox" id="set-top" /></div>
+              <div class="switch-row"><span>开机启动</span><input type="checkbox" id="set-autostart" /></div>
+              <div class="switch-row"><span>鼠标穿透（空区点到下层窗口）</span><input type="checkbox" id="set-through" /></div>
+              <div class="switch-row"><span>锁定位置（Shift 仍可拖）</span><input type="checkbox" id="set-lock" /></div>
+              <div class="card-title" style="margin-top: 10px">不透明度（10–100%）</div>
+              <input type="range" id="set-opacity" min="10" max="100" step="1" />
+              <div class="hint" id="opacity-hint" style="padding: 2px 0 0">100%</div>
+              <div class="card-title" style="margin-top: 10px">动画倍速（1.0–2.0x）</div>
+              <input type="range" id="set-anim-speed" min="1" max="2" step="0.1" />
+              <div class="hint" id="anim-speed-hint" style="padding: 2px 0 0">1x</div>
+              <div class="switch-row"><span>系统通知（任务完成/失败）</span><input type="checkbox" id="set-notifications" /></div>
+              <div class="switch-row"><span>全屏应用时自动隐藏</span><input type="checkbox" id="set-fullscreen-hide" /></div>
+              <div class="switch-row"><span>防截屏/录屏捕获（关闭 = OBS 可捕获）</span><input type="checkbox" id="set-capture-protect" /></div>
+              <div class="switch-row"><span>检测到音乐时跟着唱 🎵</span><input type="checkbox" id="set-music-sing" /></div>
+              <div class="switch-row"><span>主动识屏陪伴（白名单应用关怀）</span><input type="checkbox" id="set-proactive" /></div>
+              <input type="text" id="set-whitelist" placeholder="白名单，逗号分隔，支持 * 通配。例：Code, *知乎*, chrome" />
+              <div class="card-title" style="margin-top: 10px">检查更新源（GitHub 仓库）</div>
+              <input type="text" id="set-update-repo" placeholder="例如 your-name/DeepSeekPet" />
+              <div class="hint">Agent 联动服务默认开启（127.0.0.1:27890），协议见 docs/AGENT_PROTOCOL.md</div>
+              <button id="btn-save-settings">保存设置</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="tab-bar">
+          <button class="tab active" data-tab="overview">🏠 总览</button>
+          <button class="tab" data-tab="stats">📊 统计</button>
+          <button class="tab" data-tab="chart">📈 图表</button>
+          <button class="tab" data-tab="settings">⚙️ 设置</button>
+        </div>
+      </div>
+
+      <!-- 右键菜单 -->
+      <div id="ctx-menu" class="hidden">
+        <div class="ctx-hint">右键有更多功能哦～</div>
+        <div class="ctx-item" data-act="toggle-panel">📋 打开面板</div>
+        <div class="ctx-item" data-act="refresh">🔄 刷新余额</div>
+        <div class="ctx-item" data-act="switch-model">🔀 切换模型</div>
+        <div class="ctx-item" data-act="price-info">ℹ️ 价格说明</div>
+        <div class="ctx-divider"></div>
+        <div class="ctx-item" data-act="toggle-top"><span class="check" id="check-top">✓</span> 置顶显示</div>
+        <div class="ctx-item" data-act="toggle-autostart">
+          <span class="check" id="check-autostart">✓</span> 开机启动
+        </div>
+        <div class="ctx-item" data-act="toggle-through">
+          <span class="check" id="check-through">✓</span> 鼠标穿透
+        </div>
+        <div class="ctx-item" data-act="toggle-lock">
+          <span class="check" id="check-lock">✓</span> 锁定位置
+        </div>
+        <div class="ctx-divider"></div>
+        <div class="ctx-item" data-act="interact">💞 角色互动</div>
+        <div class="ctx-item" data-act="feed">🐟 投喂小鱼干</div>
+        <div class="ctx-item" data-act="walk">🚶 出去走走</div>
+        <div class="ctx-divider"></div>
+        <div class="ctx-hint">演示 · 工作状态</div>
+        <div class="ctx-item group-toggle" data-act="demo-toggle">
+          <span class="check" id="demo-arrow">▸</span> 展开演示
+        </div>
+        <div class="ctx-sub hidden" id="demo-sub">
+          <div class="ctx-item" data-act="task-think">🤔 模拟思考</div>
+          <div class="ctx-item" data-act="task-work">⌨️ 模拟生成</div>
+          <div class="ctx-item" data-act="task-ok">🎉 模拟完成</div>
+          <div class="ctx-item" data-act="task-err">⚠️ 模拟错误</div>
+          <div class="ctx-item" data-act="task-ds">🐱 模拟 DeepSeek</div>
+          <div class="ctx-item" data-act="task-offpeak">🔥 模拟低价提醒</div>
+        </div>
+        <div class="ctx-item" data-act="toggle-pause">
+          <span class="check" id="check-pause">✓</span> 暂停动画
+        </div>
+        <div class="ctx-item" data-act="toggle-sound">
+          <span class="check" id="check-sound">✓</span> 音效开关
+        </div>
+        <div class="ctx-item" data-act="skin">🎨 更换皮肤</div>
+        <div class="ctx-item" data-act="mini">🧩 迷你模式</div>
+        <div class="ctx-divider"></div>
+        <div class="ctx-hint">AI · 扩展</div>
+        <div class="ctx-item" data-act="quick-chat">💬 快速对话</div>
+        <div class="ctx-item" data-act="chat-window">🐱 AI 聊天窗</div>
+        <div class="ctx-item" data-act="screen-look">👀 看看屏幕</div>
+        <div class="ctx-item" data-act="spawn-pet">🐣 生一只小猫</div>
+        <div class="ctx-item" data-act="check-update">📦 检查更新</div>
+        <div class="ctx-item" data-act="open-sounds">🔊 自定义音效包</div>
+        <div class="ctx-item" data-act="open-characters">🧍 外部角色目录</div>
+        <div class="ctx-divider"></div>
+        <div class="ctx-item" data-act="about">ⓘ 关于</div>
+        <div class="ctx-divider"></div>
+        <div class="ctx-item danger" data-act="quit">⏻ 退出</div>
+      </div>
+    </div>
+    <script type="module" src="src/renderer.js"></script>
+  </body>
+</html>

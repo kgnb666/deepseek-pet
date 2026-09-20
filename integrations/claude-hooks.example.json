@@ -1,0 +1,36 @@
+{
+  "//": "Claude Code hooks 示例：把 Claude 的任务进度实时推给桌宠。复制到 ~/.claude/settings.json 的 hooks 字段（Windows 下把 node 换成实际路径，或用 npx）。PET_TOKEN 在桌宠设置里配置了鉴权时必填。",
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node D:/path/to/DeepSeekPet/tools/agent-event.mjs task working \"Claude 正在干活\""
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node D:/path/to/DeepSeekPet/tools/agent-event.mjs task success \"Claude 任务完成 🎉\""
+          }
+        ]
+      }
+    ],
+    "Notification": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node D:/path/to/DeepSeekPet/tools/agent-event.mjs say \"Claude 需要你确认一下哦～\""
+          }
+        ]
+      }
+    ]
+  }
+}

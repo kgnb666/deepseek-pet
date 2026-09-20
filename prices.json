@@ -1,0 +1,12 @@
+{
+  "deepseek-v4-flash": {
+    "label": "V4 Flash",
+    "normal": { "hit": 0.014, "miss": 0.44, "out": 1.32 },
+    "offpeak": { "hit": 0.007, "miss": 0.22, "out": 0.66 }
+  },
+  "deepseek-v4-pro": {
+    "label": "V4 Pro",
+    "normal": { "hit": 0.044, "miss": 1.32, "out": 3.96 },
+    "offpeak": { "hit": 0.022, "miss": 0.66, "out": 1.98 }
+  }
+}

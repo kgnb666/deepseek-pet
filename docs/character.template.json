@@ -1,0 +1,16 @@
+{
+  "//": "外部角色包模板。使用方法：把本目录整个复制到 %APPDATA%/deepseek-pet/characters/<你的角色id>/，重命名为 character.json，并放入对应素材文件。桌宠会在 1 秒内热加载，右键「更换皮肤」即可切换。",
+  "name": "我的角色",
+  "scale": 1,
+  "poses": {
+    "main": "main.webm",
+    "happy": "happy.webm",
+    "blink": "blink.webm",
+    "sleep": "sleep.webm",
+    "angry": "angry.webm",
+    "shy": "shy.webm",
+    "surprise": "surprise.webm",
+    "work": "work.webm"
+  },
+  "//poses": "每个姿势对应一个素材文件，支持带透明通道的 .webm/.mp4 视频（推荐 640x360@24fps，对标 dsh-pet 素材规格）或 .png/.webp/.gif 静态图。缺哪个姿势就用 main 兜底，所以 main 必须存在。scale 是整体缩放倍数（默认 1）。"
+}

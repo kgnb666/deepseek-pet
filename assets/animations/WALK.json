@@ -1,0 +1,53 @@
+{
+  "fps": 24,
+  "repeat": 0,
+  "displayHeight": 320,
+  "segments": {
+    "entry": [
+      "WALK/entry/frame_0001.webp",
+      "WALK/entry/frame_0002.webp",
+      "WALK/entry/frame_0003.webp",
+      "WALK/entry/frame_0004.webp",
+      "WALK/entry/frame_0005.webp",
+      "WALK/entry/frame_0006.webp",
+      "WALK/entry/frame_0007.webp",
+      "WALK/entry/frame_0008.webp"
+    ],
+    "loop": [
+      "WALK/loop/frame_0001.webp",
+      "WALK/loop/frame_0002.webp",
+      "WALK/loop/frame_0003.webp",
+      "WALK/loop/frame_0004.webp",
+      "WALK/loop/frame_0005.webp",
+      "WALK/loop/frame_0006.webp",
+      "WALK/loop/frame_0007.webp",
+      "WALK/loop/frame_0008.webp",
+      "WALK/loop/frame_0009.webp",
+      "WALK/loop/frame_0010.webp",
+      "WALK/loop/frame_0011.webp",
+      "WALK/loop/frame_0012.webp",
+      "WALK/loop/frame_0013.webp",
+      "WALK/loop/frame_0014.webp",
+      "WALK/loop/frame_0015.webp",
+      "WALK/loop/frame_0016.webp",
+      "WALK/loop/frame_0017.webp",
+      "WALK/loop/frame_0018.webp",
+      "WALK/loop/frame_0019.webp",
+      "WALK/loop/frame_0020.webp",
+      "WALK/loop/frame_0021.webp",
+      "WALK/loop/frame_0022.webp",
+      "WALK/loop/frame_0023.webp",
+      "WALK/loop/frame_0024.webp"
+    ],
+    "out": [
+      "WALK/out/frame_0001.webp",
+      "WALK/out/frame_0002.webp",
+      "WALK/out/frame_0003.webp",
+      "WALK/out/frame_0004.webp",
+      "WALK/out/frame_0005.webp",
+      "WALK/out/frame_0006.webp",
+      "WALK/out/frame_0007.webp",
+      "WALK/out/frame_0008.webp"
+    ]
+  }
+}

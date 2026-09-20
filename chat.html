@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; media-src 'self' res:"
+    />
+    <link rel="stylesheet" href="chat.css" />
+  </head>
+  <body>
+    <div id="app">
+      <!-- 左栏：会话列表 -->
+      <aside id="sidebar">
+        <div class="side-head">
+          <span class="side-logo">🐳 AI 聊天</span>
+          <div class="side-head-btns">
+            <button id="btn-batch" title="批量管理">☰</button>
+            <button id="btn-chat-settings" title="设置">⚙️</button>
+          </div>
+        </div>
+        <button id="btn-new-chat" class="new-chat">＋ 新会话</button>
+        <div class="search-row">
+          <input type="text" id="chat-search" placeholder="搜索会话…" />
+        </div>
+        <div class="batch-bar hidden" id="batch-bar">
+          <label><input type="checkbox" id="batch-select-all" /> 全选</label>
+          <button id="btn-batch-delete" class="danger-btn">删除所选</button>
+        </div>
+        <div id="session-list"></div>
+      </aside>
+
+      <!-- 右栏：消息区 -->
+      <main id="main">
+        <div id="chat-toolbar">
+          <select id="provider-select" title="选择 AI Provider"></select>
+          <label class="follow-label" title="聊天窗跟随桌宠移动">
+            <input type="checkbox" id="follow-toggle" /> 跟随桌宠
+          </label>
+          <div class="toolbar-spacer"></div>
+          <button id="btn-clear-chat" title="清空当前会话消息">🧹 清空</button>
+          <button id="btn-theme" title="切换主题">🎨</button>
+        </div>
+
+        <div id="messages"></div>
+
+        <div id="composer">
+          <textarea
+            id="chat-input"
+            rows="2"
+            placeholder="给小猫发消息…（Enter 发送，Shift+Enter 换行）"
+          ></textarea>
+          <button id="btn-send" title="发送 (Enter)">发送</button>
+        </div>
+      </main>
+
+      <!-- 设置抽屉 -->
+      <aside id="settings-drawer" class="hidden">
+        <div class="drawer-head">
+          <b>AI 设置</b>
+          <button id="btn-close-drawer">✕</button>
+        </div>
+        <div class="drawer-body">
+          <div class="drawer-section">
+            <div class="drawer-title">Provider（任意 OpenAI 兼容服务）</div>
+            <div id="provider-editor-list"></div>
+            <button id="btn-add-provider" class="ghost-btn">＋ 添加 Provider</button>
+          </div>
+          <div class="drawer-section">
+            <div class="drawer-title">当前会话</div>
+            <label class="drawer-label">System Prompt（角色设定）</label>
+            <textarea id="session-system" rows="4" placeholder="例如：你是一只住在桌面的小猫，回答简短可爱…"></textarea>
+            <button id="btn-save-session" class="ghost-btn">保存会话设定</button>
+          </div>
+          <div class="drawer-section">
+            <div class="drawer-title">外观</div>
+            <div class="theme-row" id="theme-row">
+              <button class="theme-swatch" data-theme="theme-blue" style="background: linear-gradient(135deg,#dbe9ff,#eef5ff)"></button>
+              <button class="theme-swatch" data-theme="theme-dark" style="background: linear-gradient(135deg,#2a2f45,#1a1d2c)"></button>
+              <button class="theme-swatch" data-theme="theme-pink" style="background: linear-gradient(135deg,#ffe4ef,#fff0f6)"></button>
+              <button class="theme-swatch" data-theme="theme-mint" style="background: linear-gradient(135deg,#ddfbef,#eefcf6)"></button>
+            </div>
+            <div class="hint">主题保存在本机，对所有会话生效。</div>
+          </div>
+          <div class="hint">Provider 的 API Key 使用系统 safeStorage 加密存储。</div>
+        </div>
+      </aside>
+    </div>
+    <script type="module" src="src/chat/chat.js"></script>
+  </body>
+</html>

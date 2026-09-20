@@ -1,0 +1,53 @@
+{
+  "fps": 24,
+  "repeat": 2,
+  "displayHeight": 320,
+  "segments": {
+    "entry": [
+      "ROLL/entry/frame_0001.webp",
+      "ROLL/entry/frame_0002.webp",
+      "ROLL/entry/frame_0003.webp",
+      "ROLL/entry/frame_0004.webp",
+      "ROLL/entry/frame_0005.webp",
+      "ROLL/entry/frame_0006.webp",
+      "ROLL/entry/frame_0007.webp",
+      "ROLL/entry/frame_0008.webp"
+    ],
+    "loop": [
+      "ROLL/loop/frame_0001.webp",
+      "ROLL/loop/frame_0002.webp",
+      "ROLL/loop/frame_0003.webp",
+      "ROLL/loop/frame_0004.webp",
+      "ROLL/loop/frame_0005.webp",
+      "ROLL/loop/frame_0006.webp",
+      "ROLL/loop/frame_0007.webp",
+      "ROLL/loop/frame_0008.webp",
+      "ROLL/loop/frame_0009.webp",
+      "ROLL/loop/frame_0010.webp",
+      "ROLL/loop/frame_0011.webp",
+      "ROLL/loop/frame_0012.webp",
+      "ROLL/loop/frame_0013.webp",
+      "ROLL/loop/frame_0014.webp",
+      "ROLL/loop/frame_0015.webp",
+      "ROLL/loop/frame_0016.webp",
+      "ROLL/loop/frame_0017.webp",
+      "ROLL/loop/frame_0018.webp",
+      "ROLL/loop/frame_0019.webp",
+      "ROLL/loop/frame_0020.webp",
+      "ROLL/loop/frame_0021.webp",
+      "ROLL/loop/frame_0022.webp",
+      "ROLL/loop/frame_0023.webp",
+      "ROLL/loop/frame_0024.webp"
+    ],
+    "out": [
+      "ROLL/out/frame_0001.webp",
+      "ROLL/out/frame_0002.webp",
+      "ROLL/out/frame_0003.webp",
+      "ROLL/out/frame_0004.webp",
+      "ROLL/out/frame_0005.webp",
+      "ROLL/out/frame_0006.webp",
+      "ROLL/out/frame_0007.webp",
+      "ROLL/out/frame_0008.webp"
+    ]
+  }
+}

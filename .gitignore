@@ -1,0 +1,28 @@
+# 依赖
+node_modules/
+
+# 打包产物（仅仓库根目录，注意不要误伤 assets/animations/<STATE>/out/ 动画段）
+/dist/
+/out/
+
+# 本地开发工具状态（不随仓库分发）
+.mimosa/
+.workbuddy/
+NVIDIA Corporation/
+
+# 序列帧 PNG 源帧（748 帧约 516MB，应用运行与打包均不需要，仅用于交付校验/再生成）
+# 运行时使用 assets/animations/*.json 清单引用的 WebP；需要源帧时执行 python tools/gen-anim-frames.py
+assets/animations/**/*.png
+
+# 日志与临时文件
+*.log
+npm-debug.log*
+*.tmp
+*.bak
+
+# 系统 / 编辑器
+Thumbs.db
+Desktop.ini
+.DS_Store
+.vscode/
+.idea/

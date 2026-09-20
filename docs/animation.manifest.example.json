@@ -1,0 +1,12 @@
+{
+  "//": "帧动画清单示例：复制为 assets/animations/<状态名>.json 即可在该状态自动接管显示（热加载）。两种模式二选一：sheet 雪碧图 / frames 序列帧。帧尺寸建议 2x（如 480x600），加载后会自动缩放到桌宠 300px 高度。",
+  "sheet": {
+    "image": "CODING.png",
+    "frameWidth": 480,
+    "frameHeight": 600,
+    "count": 8,
+    "columns": 4
+  },
+  "fps": 10,
+  "loop": true
+}
