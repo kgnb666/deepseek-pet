@@ -66,11 +66,13 @@
 
 ## 📷 截图
 
-> （截图占位：运行后 `Ctrl+Alt+A` 或截图工具截取桌宠画面，替换 `docs/screenshot.png` 后更新此链接）
+桌宠本体与 DeepSeek 余额面板（余额面板在未配置 API Key 时显示演示数据）：
 
-```text
 ![DeepSeek Pet](./docs/screenshot.png)
-```
+
+AI 聊天工作台（多会话 / 流式输出 / 多 Provider / 跟随桌宠）：
+
+![DeepSeek Pet 聊天工作台](./docs/screenshot-chat.png)
 
 ## 🚀 快速开始
 
